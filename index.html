@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Organizador de Playlists Spotify</title>
+  <!-- Conecta o arquivo de estilos CSS à página HTML -->
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Cabeçalho principal da página com título e descrição do projeto -->
+  <header class="hero">
+    <div class="hero-content">
+      <h1>Organizador de Playlists Spotify</h1>
+      <p>Cole o link de uma playlist e crie uma nova organizada do seu jeito.</p>
+    </div>
+  </header>
+
+  <!-- Conteúdo principal do aplicativo -->
+  <main class="container">
+    <!-- Painel de entrada para o usuário colar o link da playlist -->
+    <section id="input-panel" class="panel">
+      <h2>Cole o link da sua playlist</h2>
+      <form id="link-form" class="form-grid">
+        <label class="full-width">
+          Link da Playlist do Spotify
+          <input type="url" id="playlist-link" required placeholder="https://open.spotify.com/playlist/..." />
+          <span class="field-note">Cole o link de compartilhamento da sua playlist (pública ou privada)</span>
+        </label>
+        <button type="submit" class="btn-primary full-width">Carregar Playlist</button>
+      </form>
+    </section>
+
+    <!-- Painel para escolher como ordenar as faixas após carregar a playlist -->
+    <section id="organization-panel" class="panel hidden">
+      <h2>Como você deseja organizar?</h2>
+      <!-- Aqui o JavaScript mostrará informações da playlist carregada -->
+      <p class="panel-note" id="playlist-info"></p>
+      <div class="filter-grid">
+        <label>
+          Ordenar por
+          <select id="sort-order">
+            <option value="">-- Selecione --</option>
+            <option value="artist-asc">Artista (A → Z)</option>
+            <option value="artist-desc">Artista (Z → A)</option>
+            <option value="name-asc">Faixa (A → Z)</option>
+            <option value="name-desc">Faixa (Z → A)</option>
+            <option value="album-asc">Álbum (A → Z)</option>
+            <option value="album-desc">Álbum (Z → A)</option>
+            <option value="duration-asc">Duração (crescente)</option>
+            <option value="duration-desc">Duração (decrescente)</option>
+            <option value="year-asc">Ano de lançamento (crescente)</option>
+            <option value="year-desc">Ano de lançamento (decrescente)</option>
+          </select>
+        </label>
+      </div>
+      <div class="action-buttons">
+        <button id="back-button" class="btn-secondary">⬅️ Voltar</button>
+        <button id="create-button" class="btn-primary">Criar nova playlist organizada</button>
+      </div>
+    </section>
+
+    <!-- Painel que mostra a lista de faixas depois de organizar -->
+    <section id="results-panel" class="panel hidden">
+      <div class="panel-header">
+        <h2>Playlist organizada</h2>
+        <span id="track-count">0 faixas</span>
+      </div>
+      <p class="panel-note">Prévia das faixas que serão adicionadas à nova playlist.</p>
+      <div class="tracks-container">
+        <table class="tracks-table" id="tracks-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Faixa</th>
+              <th>Artista</th>
+              <th>Álbum</th>
+              <th>Duração</th>
+            </tr>
+          </thead>
+          <tbody id="tracks-list"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Painel de criação da nova playlist no Spotify -->
+    <section id="create-panel" class="panel hidden">
+      <h2>Criar nova playlist</h2>
+      <p class="panel-note">Você será redirecionado para fazer login no Spotify e autorizar a criação da playlist.</p>
+      <form id="create-form" class="form-grid">
+        <label class="full-width">
+          Nome da nova playlist
+          <input type="text" id="new-playlist-name" required placeholder="Ex: Minha Playlist Organizada" />
+        </label>
+        <label class="full-width">
+          Descrição (opcional)
+          <textarea id="new-playlist-description" placeholder="Adicione uma descrição..." rows="3"></textarea>
+        </label>
+        <label class="full-width">
+          <input type="checkbox" id="public-playlist" />
+          Tornar playlist pública
+        </label>
+        <button type="submit" class="btn-primary full-width">Criar playlist e adicionar faixas</button>
+        <button type="button" id="cancel-button" class="btn-secondary full-width">Cancelar</button>
+      </form>
+    </section>
+
+    <!-- Spinner de carregamento mostrado enquanto a aplicação busca dados -->
+    <div id="loading-spinner" class="loading-spinner hidden">
+      <div class="spinner"></div>
+      <p id="loading-message">Carregando...</p>
+    </div>
+
+    <!-- Mensagem de erro exibida quando algo dá errado -->
+    <div id="error-message" class="error-message hidden"></div>
+
+    <!-- Mensagem de sucesso exibida quando a ação conclui corretamente -->
+    <div id="success-message" class="success-message hidden">
+      <p id="success-text"></p>
+      <button id="success-button" class="btn-primary">OK</button>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <p>Feito para organizar suas playlists do Spotify de forma simples.</p>
+  </footer>
+
+  <!-- Importa o arquivo JavaScript que controla a lógica da página -->
+  <script src="script.js"></script>
+</body>
+</html>

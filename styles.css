@@ -1,0 +1,421 @@
+:root {
+  /* Variáveis de cor que tornam o código mais fácil de manter */
+  --bg: #0f172a;
+  --card: #111827;
+  --surface: #1e293b;
+  --text: #e2e8f0;
+  --muted: #94a3b8;
+  --primary: #38bdf8;
+  --primary-dark: #0ea5e9;
+  --success: #22c55e;
+  --danger: #ef4444;
+  --warning: #f59e0b;
+}
+
+/* Define o comportamento de todos os elementos para evitar problemas de tamanho */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  color: var(--text);
+  background: linear-gradient(180deg, #020617 0%, #0b1120 100%);
+}
+
+/* Classe usada para esconder elementos da página */
+.hidden {
+  display: none !important;
+}
+
+/* Estilo do cabeçalho principal */
+.hero {
+  padding: 2.5rem 1rem;
+  text-align: center;
+  background: radial-gradient(circle at top, rgba(56, 189, 248, 0.18), transparent 40%),
+    linear-gradient(180deg, #020617 0%, #0f172a 100%);
+}
+
+.hero h1 {
+  margin: 0;
+  font-size: clamp(2.25rem, 4vw, 3.5rem);
+  letter-spacing: -.04em;
+}
+
+.hero p {
+  margin: 1rem auto 0;
+  max-width: 720px;
+  color: var(--muted);
+  line-height: 1.75;
+}
+
+/* Organiza o espaçamento da área principal do conteúdo */
+.container {
+  width: min(1200px, calc(100% - 2rem));
+  margin: 0 auto;
+  padding: 2rem 0 4rem;
+}
+
+/* Painéis com fundo escuro e borda suave */
+.panel {
+  background: rgba(15, 23, 42, 0.92);
+  border: 1px solid rgba(148, 163, 184, 0.12);
+  border-radius: 24px;
+  padding: 1.75rem;
+  margin-bottom: 1.75rem;
+}
+
+.panel h2 {
+  margin-top: 0;
+  font-size: 1.2rem;
+}
+
+.panel-note {
+  margin: 0.75rem 0 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+/* Layout em grade para formulários e filtros */
+.form-grid,
+.filter-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.form-grid label,
+.filter-grid label {
+  display: grid;
+  gap: 0.5rem;
+  font-size: 0.95rem;
+  color: var(--muted);
+}
+
+.field-note {
+  font-size: 0.85rem;
+  color: rgba(148, 163, 184, 0.9);
+}
+
+/* Estilo dos campos de entrada para que fiquem maiores e fáceis de usar */
+.form-grid input,
+.form-grid select,
+.filter-grid input,
+.filter-grid select,
+.form-grid textarea {
+  width: 100%;
+  border: 1px solid rgba(148, 163, 184, 0.16);
+  border-radius: 14px;
+  padding: 0.85rem 1rem;
+  background: rgba(15, 23, 42, 0.9);
+  color: var(--text);
+  outline: none;
+  font-family: inherit;
+}
+
+.form-grid input:focus,
+.form-grid select:focus,
+.filter-grid input:focus,
+.filter-grid select:focus,
+.form-grid textarea:focus {
+  border-color: rgba(56, 189, 248, 0.7);
+  box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.12);
+}
+
+.full-width {
+  grid-column: 1 / -1;
+}
+
+/* Botões principais e secundários */
+.btn-primary,
+.btn-secondary {
+  border: none;
+  cursor: pointer;
+  border-radius: 14px;
+  padding: 0.95rem 1.1rem;
+  font-weight: 600;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  color: white;
+}
+
+.btn-primary:hover {
+  opacity: 0.9;
+}
+
+.btn-secondary {
+  background: rgba(148, 163, 184, 0.14);
+  color: var(--text);
+}
+
+.btn-secondary:hover {
+  background: rgba(148, 163, 184, 0.2);
+}
+
+/* Cabeçalho da tabela de resultados */
+.panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+/* Estilo para listas e cartões adicionais */
+.playlist-list {
+  display: grid;
+  gap: 1rem;
+}
+
+.playlist-card {
+  display: grid;
+  gap: 0.75rem;
+  padding: 1.25rem;
+  border-radius: 20px;
+  background: rgba(15, 23, 42, 0.95);
+  border: 1px solid rgba(148, 163, 184, 0.08);
+}
+
+.playlist-card h3 {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.playlist-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.playlist-meta span {
+  background: rgba(148, 163, 184, 0.08);
+  padding: 0.5rem 0.75rem;
+  border-radius: 999px;
+}
+
+.card-actions {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.card-actions a,
+.card-actions button {
+  border: none;
+  border-radius: 999px;
+  padding: 0.6rem 1rem;
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+
+.card-actions a {
+  background: rgba(56, 189, 248, 0.16);
+  color: var(--primary);
+  text-decoration: none;
+}
+
+.card-actions button {
+  background: rgba(239, 68, 68, 0.14);
+  color: #f87171;
+}
+
+.loading-spinner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 1rem;
+  text-align: center;
+}
+
+.spinner {
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 3px solid rgba(56, 189, 248, 0.16);
+  border-top-color: var(--primary);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 1rem;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.error-message {
+  background: rgba(239, 68, 68, 0.14);
+  border: 1px solid rgba(239, 68, 68, 0.4);
+  border-radius: 14px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  color: #fca5a5;
+}
+
+.success-message {
+  background: rgba(34, 197, 94, 0.14);
+  border: 1px solid rgba(34, 197, 94, 0.4);
+  border-radius: 14px;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  color: #86efac;
+  text-align: center;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 1.5rem;
+}
+
+.action-buttons button {
+  flex: 1;
+  min-width: 200px;
+}
+
+.tracks-container {
+  overflow-x: auto;
+}
+
+.tracks-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+
+.tracks-table thead {
+  background: rgba(148, 163, 184, 0.08);
+  position: sticky;
+  top: 0;
+}
+
+.tracks-table th {
+  padding: 0.85rem;
+  text-align: left;
+  font-weight: 600;
+  color: var(--primary);
+  border-bottom: 1px solid rgba(148, 163, 184, 0.12);
+}
+
+.tracks-table td {
+  padding: 0.85rem;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.08);
+}
+
+.tracks-table tbody tr:hover {
+  background: rgba(148, 163, 184, 0.05);
+}
+
+.tracks-table a {
+  color: var(--primary);
+  text-decoration: none;
+}
+
+.tracks-table a:hover {
+  text-decoration: underline;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 2rem 1rem;
+  color: var(--muted);
+}
+
+.playlists-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+}
+
+.playlist-item {
+  cursor: pointer;
+  padding: 1.25rem;
+  border-radius: 16px;
+  background: rgba(15, 23, 42, 0.95);
+  border: 2px solid rgba(148, 163, 184, 0.08);
+  transition: all 0.2s;
+}
+
+.playlist-item:hover {
+  border-color: rgba(56, 189, 248, 0.5);
+  background: rgba(15, 23, 42, 0.98);
+}
+
+.playlist-item-image {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 0.75rem;
+  background: rgba(148, 163, 184, 0.1);
+}
+
+.playlist-item-name {
+  font-weight: 600;
+  margin: 0 0 0.5rem;
+  font-size: 1.05rem;
+  color: var(--text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.playlist-item-meta {
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+a {
+  color: var(--primary);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+ol {
+  padding-left: 1.5rem;
+}
+
+ol li {
+  margin-bottom: 0.5rem;
+}
+.footer {
+  text-align: center;
+  padding: 1.5rem 1rem 2rem;
+  color: var(--muted);
+}
+
+@media (min-width: 760px) {
+  .form-grid,
+  .filter-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .filter-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .form-grid .full-width,
+  .filter-grid .full-width {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (min-width: 980px) {
+  .form-grid,
+  .filter-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .filter-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
